@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7c9e5">
+  <title>Una sorpresa para Alexandra 💗</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 20% 15%,#ffe8f5,transparent 35%),linear-gradient(135deg,#f8d7ed,#e8dcff 55%,#fce8ef);font-family:system-ui,sans-serif;color:#633e66;text-align:center}
+    .loader{max-width:440px;padding:30px 26px;background:#fff9;border:1px solid #fff;border-radius:26px;box-shadow:0 16px 50px #9c6b9b25}
+    .loader .cats{font-size:42px;letter-spacing:8px}
+    h1{font-size:clamp(1.4rem,5vw,2rem);margin:12px 0 8px}
+    p{line-height:1.6}
+    .paw{display:inline-block;animation:bounce 1s infinite alternate}
+    @keyframes bounce{to{transform:translateY(-7px) rotate(8deg)}}
+    .error{display:none;color:#8d315d}
+  </style>
+</head>
+<body>
+  <main class="loader" id="loader">
+    <div class="cats">🐱 🐾 🐈‍⬛</div>
+    <h1>Preparando una sorpresa para Alexandra</h1>
+    <p>Un momento… los gatitos están acomodando los globos <span class="paw">💗</span></p>
+    <p class="error" id="error">No se pudo cargar la tarjeta. Revisa tu conexión e inténtalo de nuevo.</p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/less@4.2.0/dist/less.min.js"></script>
+  <script>
+  (async function(){
+    const zipUrl = "https://raw.githubusercontent.com/blatomoto890-beep/Cumplea-os-Alexandra/main/Birthday-master.zip";
+    try {
+      const response = await fetch(zipUrl);
+      if (!response.ok) throw new Error("No se pudo descargar el proyecto original");
+      const zip = await JSZip.loadAsync(await response.arrayBuffer());
+      const root = "Birthday-master/";
+      const getText = async name => {
+        const file = zip.file(root + name);
+        if (!file) throw new Error("Falta el archivo " + name);
+        return file.async("string");
+      };
+      const urls = {};
+      for (const name of Object.keys(zip.files)) {
+        const file = zip.files[name];
+        if (file.dir || !name.startsWith(root)) continue;
+        const base = name.slice(root.length);
+        const blob = await file.async("blob");
+        const type = base.endsWith(".mp3") ? "audio/mpeg" : base.endsWith(".png") ? "image/png" : base.endsWith(".jpg") ? "image/jpeg" : "application/octet-stream";
+        urls[base] = URL.createObjectURL(new Blob([blob], {type}));
+      }
+
+      let html = await getText("index.html");
+      let css = await getText("stylesheet.css");
+      let loadingCss = await getText("loading.css");
+      const cakeLess = await getText("cake.less");
+
+      const localUrl = path => urls[path.replace(/^\.\//,"")] || path;
+      const rewriteCss = source => source.replace(/url\((['"]?)([^'")]+)\1\)/g, (all, quote, path) => {
+        const clean = path.trim();
+        return clean.startsWith("data:") || clean.startsWith("http") ? all : 'url("' + localUrl(clean) + '")';
+      });
+      css = rewriteCss(css);
+      loadingCss = rewriteCss(loadingCss);
+      const cake = await less.render(cakeLess);
+
+      html = html.replace(/<title>[^<]*<\/title>/i, "<title>¡Feliz cumpleaños, Alexandra! 💗</title>");
+      html = html.replace(/Sapthesh V/g, "Alexandra");
+      html = html.replace("A mesage for you", "Un mensaje para ti");
+      html = html.replace(/<link rel="stylesheet" type="text\/css" href="stylesheet\.css">/i, "<style>" + css + "</style>");
+      html = html.replace(/<link rel="stylesheet" type="text\/css" href="loading\.css">/i, "<style>" + loadingCss + "</style>");
+      html = html.replace(/<link rel="stylesheet\/less" href="cake\.less">/i, "<style>" + cake.css + "</style>");
+      html = html.replace(/<script src="\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/less\.js\/2\.1\.0\/less\.min\.js"><\/script>/i, "");
+      html = html.replace(/href='http:\/\/fonts\.googleapis\.com/g, "href='https://fonts.googleapis.com");
+      html = html.replace(/src="hbd\.mp3"/g, 'src="' + urls["hbd.mp3"] + '"');
+      html = html.replace(/src="effect\.js"/g, 'src="' + urls["effect.js"] + '"');
+      html = html.replace(/src="([^"]+\.(?:png|jpg|jpeg|ico))"/g, (all, path) => 'src="' + localUrl(path) + '"');
+
+      const catExtras = `
+      <div class="alex-cat-parade" aria-label="Gatitos para Alexandra">
+        <div class="alex-kawaii-cat"><span>🐱</span><small>miau, miau ♡</small></div>
+        <div class="alex-real-cat"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=420&q=85" alt="Un gatito real mirando a la cámara"><small>un michi para ti ♡</small></div>
+        <div class="alex-kawaii-cat dark"><span>🐈‍⬛</span><small>¡feliz día!</small></div>
+      </div>`;
+      html = html.replace("<p>a very happy birthday Alexandra</p>", "<p>¡Feliz cumpleaños, Alexandra! ♡</p>" + catExtras);
+      html = html.replace("</head>", `
+      <style>
+        .alex-cat-parade{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:34px auto 110px;padding:0 12px}
+        .alex-kawaii-cat,.alex-real-cat{width:128px;min-height:132px;padding:12px 10px;border-radius:22px;background:linear-gradient(145deg,#fff7fc,#f5e8ff);border:2px solid #f4c6e6;box-shadow:0 8px 22px #7d4b7d20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transform:rotate(-3deg)}
+        .alex-kawaii-cat span{font-size:54px;line-height:1.1;filter:drop-shadow(0 4px 2px #b47da633)}
+        .alex-kawaii-cat small,.alex-real-cat small{font:600 12px system-ui,sans-serif;color:#915d88}
+        .alex-kawaii-cat.dark{transform:rotate(3deg);background:linear-gradient(145deg,#f5edff,#eadcff)}
+        .alex-real-cat{transform:rotate(2deg);background:#fff}
+        .alex-real-cat img{width:88px;height:88px;object-fit:cover;border-radius:50%;border:4px solid #f5cce6}
+        @media(max-width:600px){.alex-cat-parade{gap:9px;margin-bottom:125px}.alex-kawaii-cat,.alex-real-cat{width:100px;min-height:112px;padding:8px}.alex-kawaii-cat span{font-size:42px}.alex-real-cat img{width:70px;height:70px}}
+      </style></head>`);
+      document.open();
+      document.write(html);
+      document.close();
+    } catch (error) {
+      const el = document.getElementById("error");
+      if (el) el.style.display = "block";
+      console.error(error);
+    }
+  })();
+  </script>
+</body>
+</html>
