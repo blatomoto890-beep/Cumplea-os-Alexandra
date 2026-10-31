@@ -97,13 +97,13 @@
       html = html.replace(/src="([^"]+\.(?:png|jpg|jpeg|ico))"/g, (all, path) => 'src="' + localUrl(path) + '"');
 
       const catExtras = `
-      <div class="alex-cat-parade" aria-label="Gatitos kawaii y gatitos reales para Ale">
-        <div class="alex-kawaii-cat"><span>😺</span><small>miau, miau ♡</small></div>
-        <div class="alex-real-cat"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=420&q=85" alt="Gatito real de pelaje atigrado"><small>michi bonito ♡</small></div>
-        <div class="alex-kawaii-cat dark"><span>🐈‍⬛</span><small>¡purrfect day!</small></div>
-        <div class="alex-real-cat second"><img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=420&q=85" alt="Otro gatito real sentado"><small>otro michi ♡</small></div>
-        <div class="alex-kawaii-cat"><span>🐾</span><small>patitas mágicas</small></div>
-      </div>`;
+      <div class="ale-cat-doodles" aria-hidden="true">
+        <svg class="cat-doodle cat-one" viewBox="0 0 150 150"><path d="M35 57 29 20Q28 12 38 19L62 39Q76 34 90 39L115 17Q124 10 122 24L116 62Q130 82 119 105Q105 132 74 132Q39 132 25 105Q13 80 35 57Z" fill="#fff7fb" stroke="#c985b5" stroke-width="5" stroke-linejoin="round"/><path d="M48 82q8-10 16 0M86 82q8-10 16 0" fill="none" stroke="#805579" stroke-width="5" stroke-linecap="round"/><path d="m72 94 6 5 6-5" fill="#e89abd" stroke="#805579" stroke-width="2"/><path d="M76 99q-9 12-17 4m19-4q9 12 17 4M30 93 7 88m24 15L8 109m111-16 24-5m-24 21 23 7" fill="none" stroke="#b77da7" stroke-width="3" stroke-linecap="round"/></svg>
+        <svg class="cat-doodle cat-two" viewBox="0 0 150 150"><path d="M35 57 29 20Q28 12 38 19L62 39Q76 34 90 39L115 17Q124 10 122 24L116 62Q130 82 119 105Q105 132 74 132Q39 132 25 105Q13 80 35 57Z" fill="#f7efff" stroke="#a98bc9" stroke-width="5" stroke-linejoin="round"/><path d="M48 82q8-10 16 0M86 82q8-10 16 0" fill="none" stroke="#70577f" stroke-width="5" stroke-linecap="round"/><path d="m72 94 6 5 6-5" fill="#e89abd" stroke="#70577f" stroke-width="2"/><path d="M76 99q-9 12-17 4m19-4q9 12 17 4" fill="none" stroke="#a98bc9" stroke-width="3" stroke-linecap="round"/></svg>
+        <svg class="cat-doodle cat-three" viewBox="0 0 150 150"><path d="M35 57 29 20Q28 12 38 19L62 39Q76 34 90 39L115 17Q124 10 122 24L116 62Q130 82 119 105Q105 132 74 132Q39 132 25 105Q13 80 35 57Z" fill="#fffaf0" stroke="#d6a66f" stroke-width="5" stroke-linejoin="round"/><path d="M48 82q8-10 16 0M86 82q8-10 16 0" fill="none" stroke="#805b46" stroke-width="5" stroke-linecap="round"/><path d="m72 94 6 5 6-5" fill="#e89abd" stroke="#805b46" stroke-width="2"/><path d="M76 99q-9 12-17 4m19-4q9 12 17 4" fill="none" stroke="#d6a66f" stroke-width="3" stroke-linecap="round"/></svg>
+        <span class="paw-doodle paw-a">♡</span><span class="paw-doodle paw-b">✧</span><span class="paw-doodle paw-c">♡</span>
+      </div>
+      <p class="ale-hint">Una pequeña sorpresa hecha con cariño ♡</p>`;
       html = html.replace('<div class="row cake-cover">', catExtras + '<div class="row cake-cover">');
 
       html = html.replace("</head>", `
@@ -133,6 +133,40 @@
         .alex-real-cat img{width:88px;height:88px;object-fit:cover;border-radius:50%;border:4px solid #f5cce6}
         @keyframes alex-cat-float{from{translate:0 0}to{translate:0 -9px}}
         @media(max-width:600px){.alex-cat-parade{gap:9px;margin-bottom:125px}.alex-kawaii-cat,.alex-real-cat{width:98px;min-height:112px;padding:8px}.alex-kawaii-cat span{font-size:42px}.alex-real-cat img{width:68px;height:68px}.alex-kawaii-cat small,.alex-real-cat small{font-size:10px}}
+
+        body,body.peach,body.peach-after{background:radial-gradient(ellipse at 12% 12%,#ffe7f3 0,transparent 32%),radial-gradient(ellipse at 88% 26%,#eadfff 0,transparent 34%),linear-gradient(145deg,#fff0f7,#f4e8ff 58%,#ffeaf2)!important;color:#765078}
+        .container{width:100%;max-width:1000px;padding:0 14px 110px;position:relative;z-index:2}
+        .custom-banner{background:linear-gradient(135deg,#fff9fd,#f7edff)!important;border:2px solid #efb9dc!important;box-shadow:0 14px 36px #a66c9b20!important}
+        .bulb-holder{padding-top:8px}
+        .cake-cover{min-height:320px;display:flex;align-items:center;justify-content:center}
+        .cake{margin:0 auto;transform:scale(.92);transform-origin:top center}
+        .message{background:#fff9fdc9;border:1px solid #f2c9e5;border-radius:28px;padding:24px 10px;margin:25px auto 100px;max-width:760px;box-shadow:0 12px 35px #9b6a9a18}
+        .message p{font-family:system-ui,sans-serif!important;color:#765078!important;font-size:clamp(16px,4.3vw,22px);line-height:1.55;margin:12px auto}
+        .navbar-fixed-bottom{z-index:9999!important;background:linear-gradient(transparent,#fff8 22%,#fff9)!important;padding:10px 5px 14px!important}
+        .navbar-fixed-bottom .row{margin:0}
+        .navbar-fixed-bottom button{white-space:normal!important;margin:4px!important;border:1px solid #efc4e1!important;border-radius:24px!important;background:linear-gradient(135deg,#d88bbd,#a98bd2)!important;color:white!important;font-weight:700!important;padding:10px 13px!important;box-shadow:0 5px 14px #855c8c22!important}
+        .ale-cat-doodles{position:relative;z-index:3;pointer-events:none;width:min(100%,820px);height:0;margin:0 auto}
+        .cat-doodle{position:absolute;width:76px;height:76px;filter:drop-shadow(0 5px 6px #986d9820);animation:cat-drift 4s ease-in-out infinite alternate}
+        .cat-one{left:2%;top:20px;transform:rotate(-12deg)}
+        .cat-two{right:3%;top:160px;transform:rotate(10deg);animation-delay:1s}
+        .cat-three{left:8%;top:420px;width:62px;height:62px;transform:rotate(8deg);animation-delay:1.8s}
+        .paw-doodle{position:absolute;color:#d99ac5;font:30px Georgia;opacity:.75}
+        .paw-a{right:10%;top:55px}.paw-b{left:18%;top:270px}.paw-c{right:18%;top:385px}
+        .ale-hint{font:600 14px system-ui,sans-serif;color:#a16d9a;text-align:center;margin:8px auto 24px;position:relative;z-index:3}
+        @keyframes cat-drift{from{translate:0 0}to{translate:0 -12px}}
+        @media(max-width:600px){
+          .container{padding-left:8px;padding-right:8px;padding-bottom:145px}
+          .custom-banner{margin:18px auto 12px;min-height:132px;padding:18px 12px}
+          .custom-banner strong{font-size:clamp(25px,7vw,36px)}
+          .cake-cover{min-height:280px}
+          .cake{transform:scale(.72)}
+          .navbar-fixed-bottom{max-height:31vh;overflow-y:auto}
+          .navbar-fixed-bottom button{font-size:12px!important;padding:8px 10px!important}
+          .cat-doodle{width:52px;height:52px}
+          .cat-one{left:0;top:5px}.cat-two{right:0;top:120px}.cat-three{top:310px}
+          .paw-doodle{font-size:22px}
+          .message{margin-bottom:125px;padding:18px 6px}
+        }
       </style></head>`);
       document.open();
       document.write(html);
