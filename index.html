@@ -97,13 +97,15 @@
       html = html.replace(/src="([^"]+\.(?:png|jpg|jpeg|ico))"/g, (all, path) => 'src="' + localUrl(path) + '"');
 
       const catExtras = `
-      <div class="ale-cat-doodles" aria-hidden="true">
-        <svg class="cat-doodle cat-one" viewBox="0 0 150 150"><path d="M35 57 29 20Q28 12 38 19L62 39Q76 34 90 39L115 17Q124 10 122 24L116 62Q130 82 119 105Q105 132 74 132Q39 132 25 105Q13 80 35 57Z" fill="#fff7fb" stroke="#c985b5" stroke-width="5" stroke-linejoin="round"/><path d="M48 82q8-10 16 0M86 82q8-10 16 0" fill="none" stroke="#805579" stroke-width="5" stroke-linecap="round"/><path d="m72 94 6 5 6-5" fill="#e89abd" stroke="#805579" stroke-width="2"/><path d="M76 99q-9 12-17 4m19-4q9 12 17 4M30 93 7 88m24 15L8 109m111-16 24-5m-24 21 23 7" fill="none" stroke="#b77da7" stroke-width="3" stroke-linecap="round"/></svg>
-        <svg class="cat-doodle cat-two" viewBox="0 0 150 150"><path d="M35 57 29 20Q28 12 38 19L62 39Q76 34 90 39L115 17Q124 10 122 24L116 62Q130 82 119 105Q105 132 74 132Q39 132 25 105Q13 80 35 57Z" fill="#f7efff" stroke="#a98bc9" stroke-width="5" stroke-linejoin="round"/><path d="M48 82q8-10 16 0M86 82q8-10 16 0" fill="none" stroke="#70577f" stroke-width="5" stroke-linecap="round"/><path d="m72 94 6 5 6-5" fill="#e89abd" stroke="#70577f" stroke-width="2"/><path d="M76 99q-9 12-17 4m19-4q9 12 17 4" fill="none" stroke="#a98bc9" stroke-width="3" stroke-linecap="round"/></svg>
-        <svg class="cat-doodle cat-three" viewBox="0 0 150 150"><path d="M35 57 29 20Q28 12 38 19L62 39Q76 34 90 39L115 17Q124 10 122 24L116 62Q130 82 119 105Q105 132 74 132Q39 132 25 105Q13 80 35 57Z" fill="#fffaf0" stroke="#d6a66f" stroke-width="5" stroke-linejoin="round"/><path d="M48 82q8-10 16 0M86 82q8-10 16 0" fill="none" stroke="#805b46" stroke-width="5" stroke-linecap="round"/><path d="m72 94 6 5 6-5" fill="#e89abd" stroke="#805b46" stroke-width="2"/><path d="M76 99q-9 12-17 4m19-4q9 12 17 4" fill="none" stroke="#d6a66f" stroke-width="3" stroke-linecap="round"/></svg>
-        <span class="paw-doodle paw-a">♡</span><span class="paw-doodle paw-b">✧</span><span class="paw-doodle paw-c">♡</span>
-      </div>
-      <p class="ale-hint">Una pequeña sorpresa hecha con cariño ♡</p>`;
+      <div class="ale-illustration-layer" aria-hidden="true">
+        <svg class="ale-cat art-cat-one" viewBox="0 0 180 180"><path d="M42 72 30 25q-3-12 10-5l38 30q13-5 26 0l37-29q12-8 10 7l-9 45q18 24 8 54-13 39-60 39-48 0-61-38-10-30 13-56Z" fill="#fff8fc" stroke="#b979ad" stroke-width="5" stroke-linejoin="round"/><path d="M58 91q10-13 20 0m25 0q10-13 20 0" fill="none" stroke="#74516f" stroke-width="5" stroke-linecap="round"/><path d="m85 106 7 6 7-6" fill="#e99bbd" stroke="#74516f" stroke-width="2"/><path d="M92 112q-12 13-24 3m26-3q12 13 24 3M48 106 15 99m34 20-31 8m112-21 32-8m-34 21 30 9" fill="none" stroke="#b979ad" stroke-width="3" stroke-linecap="round"/><ellipse cx="65" cy="105" rx="8" ry="5" fill="#f5b3ce" opacity=".7"/><ellipse cx="117" cy="105" rx="8" ry="5" fill="#f5b3ce" opacity=".7"/></svg>
+        <svg class="ale-cat art-cat-two" viewBox="0 0 180 180"><path d="M39 70 32 24q-2-10 10-3l35 29q15-6 29 0l35-28q12-8 10 5l-8 45q20 23 9 55-13 39-62 39-49 0-62-39-10-31 11-57Z" fill="#f7efff" stroke="#9d83bd" stroke-width="5"/><path d="M57 91q9-12 18 0m29 0q9-12 18 0" fill="none" stroke="#67536f" stroke-width="5" stroke-linecap="round"/><path d="m84 106 8 7 8-7" fill="#e99bbd" stroke="#67536f" stroke-width="2"/><path d="M92 113q-11 12-22 2m24-2q11 12 22 2" fill="none" stroke="#9d83bd" stroke-width="3" stroke-linecap="round"/><path d="m118 35 9-10 8 11-9 9Z" fill="#f3a9cf" stroke="#b979ad" stroke-width="2"/></svg>
+        <svg class="ale-cat art-cat-three" viewBox="0 0 190 170"><path d="M38 75 28 25q-2-11 10-4l38 29q15-5 29 0l39-29q11-7 9 6l-8 49q19 20 9 49-14 38-62 38-47 0-62-37-11-27 8-51Z" fill="#fff9f1" stroke="#d1a16f" stroke-width="5"/><path d="M57 94q9-12 18 0m30 0q9-12 18 0" fill="none" stroke="#795b48" stroke-width="5" stroke-linecap="round"/><path d="m84 108 8 6 8-6" fill="#e99bbd" stroke="#795b48" stroke-width="2"/><path d="M92 114q-12 12-23 2m25-2q12 12 23 2" fill="none" stroke="#d1a16f" stroke-width="3" stroke-linecap="round"/><path d="M53 58q9-10 19 0m43 0q9-10 19 0" fill="none" stroke="#d1a16f" stroke-width="5" stroke-linecap="round"/></svg>
+        <svg class="ale-cat art-cat-four" viewBox="0 0 180 180"><path d="M42 71 31 24q-2-11 10-4l37 29q14-5 28 0l37-28q12-8 10 6l-8 45q19 23 9 54-13 39-62 39-48 0-61-38-10-30 11-56Z" fill="#f5e9ee" stroke="#aa7e9e" stroke-width="5"/><path d="M58 92q9-12 18 0m29 0q9-12 18 0" fill="none" stroke="#624d60" stroke-width="5" stroke-linecap="round"/><path d="m84 107 8 7 8-7" fill="#e99bbd" stroke="#624d60" stroke-width="2"/><path d="M92 114q-11 12-22 2m24-2q11 12 22 2" fill="none" stroke="#aa7e9e" stroke-width="3" stroke-linecap="round"/><path d="M46 45q13 12 25 0m39 0q13 12 25 0" fill="none" stroke="#aa7e9e" stroke-width="7" stroke-linecap="round"/></svg>
+        <svg class="ale-cat art-cat-five" viewBox="0 0 190 180"><path d="M39 70 31 24q-2-11 10-4l36 29q15-5 29 0l37-28q12-8 10 6l-8 45q19 23 9 54-13 39-62 39-48 0-61-38-10-30 8-57Z" fill="#fff7f0" stroke="#c99572" stroke-width="5"/><path d="M58 92q9-12 18 0m29 0q9-12 18 0" fill="none" stroke="#755745" stroke-width="5" stroke-linecap="round"/><path d="m84 107 8 7 8-7" fill="#e99bbd" stroke="#755745" stroke-width="2"/><path d="M92 114q-11 12-22 2m24-2q11 12 22 2" fill="none" stroke="#c99572" stroke-width="3" stroke-linecap="round"/></svg>
+        <span class="ale-sparkle sparkle-one">✧</span><span class="ale-sparkle sparkle-two">♡</span><span class="ale-sparkle sparkle-three">✦</span><span class="ale-sparkle sparkle-four">♡</span><span class="ale-sparkle sparkle-five">✧</span>
+        <span class="ale-paw paw-one">🐾</span><span class="ale-paw paw-two">🐾</span>
+      </div>`;
       html = html.replace('<div class="row cake-cover">', catExtras + '<div class="row cake-cover">');
 
       html = html.replace("</head>", `
@@ -167,7 +169,73 @@
           .paw-doodle{font-size:22px}
           .message{margin-bottom:125px;padding:18px 6px}
         }
+
+        body{background:#090515!important;color:#765078;transition:background 2s ease}
+        body.peach{background:linear-gradient(135deg,#fff0f7,#f2e6ff 58%,#ffe8f2)!important}
+        body.peach-after{background:linear-gradient(135deg,#ffeaf5,#eee4ff 55%,#ffe8f1)!important}
+        .container{width:100%;max-width:1000px;padding:0 14px 125px;position:relative;z-index:2}
+        .custom-banner{background:linear-gradient(135deg,#fff9fd,#f7edff)!important;border:2px solid #efb9dc!important;box-shadow:0 14px 36px #a66c9b20!important}
+        .cake-cover{position:relative;min-height:380px;margin-top:24px!important;display:block}
+        .cake-cover>.col-md-12{position:relative;min-height:360px}
+        .cake{position:absolute!important;top:20px!important;left:50%!important;margin-left:-150px!important;display:none;width:300px;height:300px;transform:scale(.92);transform-origin:top center;z-index:5}
+        .bizcocho{background:#b96b78!important}
+        .cobertura,.cobertura:before,.cobertura:after{background:#fff0f7!important}
+        .velas{background:#fff!important}
+        .message{background:#fff9fdde;border:1px solid #f2c9e5;border-radius:28px;padding:24px 10px;margin:25px auto 125px;max-width:760px;box-shadow:0 12px 35px #9b6a9a18}
+        .message p{font-family:system-ui,sans-serif!important;color:#765078!important;font-size:clamp(16px,4.3vw,22px);line-height:1.55;margin:12px auto;text-transform:none!important}
+        .navbar-fixed-bottom{z-index:9999!important;background:linear-gradient(transparent,#fff8 22%,#fff9)!important;padding:10px 5px 14px!important}
+        .navbar-fixed-bottom .row{margin:0}
+        .navbar-fixed-bottom button{white-space:normal!important;margin:4px!important;border:1px solid #efc4e1!important;border-radius:24px!important;background:linear-gradient(135deg,#d88bbd,#a98bd2)!important;color:white!important;font-weight:700!important;padding:10px 13px!important;box-shadow:0 5px 14px #855c8c22!important}
+        .ale-illustration-layer{position:relative;z-index:4;pointer-events:none;width:100%;height:0;margin:0 auto}
+        .ale-cat{position:absolute;width:100px;height:100px;filter:drop-shadow(0 7px 7px #8e5e8622);animation:ale-cat-float 4s ease-in-out infinite alternate}
+        .art-cat-one{left:1%;top:50px;transform:rotate(-12deg)}
+        .art-cat-two{right:1%;top:205px;transform:rotate(9deg);animation-delay:.7s}
+        .art-cat-three{left:3%;top:520px;width:84px;height:84px;animation-delay:1.3s}
+        .art-cat-four{right:2%;top:790px;width:92px;height:92px;animation-delay:1.9s}
+        .art-cat-five{left:43%;top:1030px;width:88px;height:88px;animation-delay:2.4s}
+        .ale-sparkle{position:absolute;color:#d88dbd;text-shadow:0 2px 10px #e9a9d555;font:32px Georgia}
+        .sparkle-one{left:19%;top:165px}.sparkle-two{right:18%;top:95px}.sparkle-three{left:8%;top:410px}.sparkle-four{right:9%;top:600px}.sparkle-five{left:74%;top:930px}
+        .ale-paw{position:absolute;font-size:25px;opacity:.55;filter:grayscale(.3)}
+        .paw-one{left:20%;top:680px}.paw-two{right:19%;top:360px}
+        .confetti-piece{position:fixed;z-index:10000;top:-20px;width:9px;height:14px;pointer-events:none;animation:ale-confetti-fall 3.8s linear forwards}
+        @keyframes ale-confetti-fall{to{transform:translate3d(var(--drift),105vh,0) rotate(900deg);opacity:.15}}
+        @keyframes ale-cat-float{from{translate:0 0}to{translate:0 -13px}}
+        @media(max-width:600px){
+          .container{padding-left:8px;padding-right:8px;padding-bottom:150px}
+          .custom-banner{margin:18px auto 12px;min-height:132px;padding:18px 12px}
+          .custom-banner strong{font-size:clamp(25px,7vw,36px)}
+          .cake-cover{min-height:320px}
+          .cake-cover>.col-md-12{min-height:310px}
+          .cake{top:8px!important;transform:scale(.78);transform-origin:top center}
+          .navbar-fixed-bottom{max-height:31vh;overflow-y:auto}
+          .navbar-fixed-bottom button{font-size:12px!important;padding:8px 10px!important}
+          .ale-cat{width:62px;height:62px}
+          .art-cat-one{left:-4px;top:35px}.art-cat-two{right:-3px;top:190px}
+          .art-cat-three{left:-2px;top:440px;width:55px;height:55px}
+          .art-cat-four{right:-3px;top:690px;width:58px;height:58px}
+          .art-cat-five{left:38%;top:900px;width:55px;height:55px}
+          .ale-sparkle{font-size:22px}
+          .paw-one{left:16%;top:600px}.paw-two{right:12%;top:330px}
+          .message{margin-bottom:140px;padding:18px 6px}
+        }
       </style></head>`);
+
+      html = html.replace("</body>", `<script>
+        document.addEventListener("click", function(event){
+          if(!event.target.closest("#wish_message")) return;
+          for(let i=0;i<90;i++){
+            const piece=document.createElement("i");
+            piece.className="confetti-piece";
+            piece.style.left=(Math.random()*100)+"vw";
+            piece.style.background=["#f7a8cf","#d5b6f2","#ffe08a","#a9d8d0","#ffffff"][i%5];
+            piece.style.borderRadius=i%3===0?"50%":"2px";
+            piece.style.setProperty("--drift",((Math.random()-.5)*260)+"px");
+            piece.style.animationDelay=(Math.random()*.7)+"s";
+            document.body.appendChild(piece);
+            setTimeout(()=>piece.remove(),4800);
+          }
+        });
+      <\/script></body>`);
       document.open();
       document.write(html);
       document.close();
