@@ -50,6 +50,10 @@
       }
 
       let html = await getText("index.html");
+      let effectJs = await getText("effect.js");
+      effectJs = effectJs.replace("if(i==50)", "if(i==47)").replace('$(".message")', '$(".message")').replace('$("p:nth-child(49)")', '$("p:nth-child(46)")');
+      urls["effect.js"] = URL.createObjectURL(new Blob([effectJs], {type:"text/javascript"}));
+
       let css = await getText("stylesheet.css");
       let loadingCss = await getText("loading.css");
       const cakeLess = await getText("cake.less");
@@ -66,6 +70,23 @@
       html = html.replace(/<title>[^<]*<\/title>/i, "<title>¡Feliz cumpleaños, Ale! 💗</title>");
       html = html.replace(/Sapthesh V/g, "Ale");
       html = html.replace("A mesage for you", "Un mensaje para ti");
+      const spanishMessages = ["Hoy es un día muy especial…","¡porque una personita increíble está de cumpleaños!","Y aunque sea un día como cualquier otro,","hoy merece tener un brillo diferente.","Un año más de historias,","de aprendizajes y de momentos bonitos.","Así que toca celebrar en grande ♡","Preparé esta pequeña sorpresa para ti,","con mucho cariño y algunos michis de compañía.","Gracias por tu amistad,","por las risas y por cada recuerdo compartido.","Espero que nunca te falten motivos para sonreír,","personas que te quieran bonito","y sueños que te emocionen.","Que cada nuevo día te acerque","a todo eso que deseas conseguir.","Que tengas fuerza para los días difíciles,","paciencia para cada proceso","y alegría para disfrutar los pequeños momentos.","Que sigas siendo tú,","con esa forma única de iluminar tus días.","Disfruta mucho cada experiencia,","cada sorpresa y cada nueva aventura.","Rodéate de cosas que te hagan bien,","de música que te encante","y de personas que sumen a tu vida.","Hoy mereces que te celebren,","que te consientan","y que te recuerden lo especial que eres.","Y si algo no sale como esperabas,","recuerda que siempre hay nuevas oportunidades.","Que este año venga cargado de","momentos felices, buenas noticias","y muchísimas razones para agradecer.","También espero que nunca falten","los gatitos, las risas y los dulces ♡","Gracias por ser parte de tantos momentos.","Esta sorpresa es pequeña,","pero está hecha con mucho cariño.","¡Sigue brillando a tu manera!","¡Que todos tus deseos encuentren su camino!","Y ahora sí…","una vez más, ¡feliz cumpleaños, Ale!","¡Que tengas un día precioso!","¡Disfruta muchísimo tu día!","Con mucho cariño ♡"];
+      html = html.replace(/(<div class="row message">\\s*<div class="col-md-12">)[\\s\\S]*?(<\\/div>\\s*<\\/div>)/, (_, start, end) => start + spanishMessages.map(message => "<p>" + message + "</p>").join("") + end);
+      const buttonLabels = {turn_on:"Encender las luces ✨",play:"Reproducir música ♫",bannar_coming:"Decorar la sorpresa 🎀",balloons_flying:"¡A volar, globitos! 🎈",cake_fadein:"Mostrar el pastel 🎂",light_candle:"Encender la velita 🕯️",wish_message:"Pedir un deseo 💗",story:"Un mensajito para ti ♡"};
+      for (const [id, label] of Object.entries(buttonLabels)) {
+        const re = new RegExp('(<button[^>]*id="' + id + '"[^>]*>)[\\s\\S]*?(<\\/button>)');
+        html = html.replace(re, "$1" + label + "$2");
+      }
+      const balloonLetters = ["A","L","E","♡","♡","♡","♡"];
+      balloonLetters.forEach((letter, index) => {
+        const id = "b" + (index + 1);
+        const re = new RegExp('(<div class="balloons text-center" id="' + id + '">[\\s\\S]*?<h2[^>]*>)[\\s\\S]*?(<\\/h2>)');
+        html = html.replace(re, "$1" + letter + "$2");
+      });
+      html = html.replace('<img src="banner.png" class="bannar">', '<div class="bannar custom-banner"><span class="banner-kicker">UN DÍA PARA CELEBRAR</span><strong>¡Feliz cumpleaños, Ale!</strong><small>Que hoy esté lleno de magia, risas y cosas bonitas ♡</small></div>');
+      html = html.replace(/¡purrfect day!/g, "¡día perfecto!");
+      html = html.replace(/miau, miau ♡/g, "miau, miau ♡");
+
       html = html.replace(/<link rel="stylesheet" type="text\/css" href="stylesheet\.css">/i, "<style>" + css + "</style>");
       html = html.replace(/<link rel="stylesheet" type="text\/css" href="loading\.css">/i, "<style>" + loadingCss + "</style>");
       html = html.replace(/<link rel="stylesheet\/less" href="cake\.less">/i, "<style>" + cake.css + "</style>");
@@ -84,6 +105,22 @@
         <div class="alex-kawaii-cat"><span>🐾</span><small>patitas mágicas</small></div>
       </div>`;
       html = html.replace("<p>a very happy birthday Ale</p>", "<p>¡Feliz cumpleaños, Ale! ♡</p>" + catExtras);
+
+        .custom-banner{width:min(92vw,760px);min-height:170px;margin:28px auto 18px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;background:linear-gradient(135deg,#fff7fb,#f4e8ff);border:3px solid #f3b9dc;border-radius:30px;box-shadow:0 12px 30px #8f5b8c25;transform:translateY(-500px)}
+        .custom-banner.bannar-come{animation:bannar_come linear 6s;transform:translate(0,0)}
+        .custom-banner .banner-kicker{font:700 11px system-ui,sans-serif;letter-spacing:3px;color:#b16b9e}
+        .custom-banner strong{font:800 clamp(27px,6vw,48px)/1.1 system-ui,sans-serif;color:#87528b;text-shadow:2px 3px 0 #f8d7ec}
+        .custom-banner small{font:500 clamp(13px,3vw,17px) system-ui,sans-serif;color:#946b91}
+        .message{font-family:system-ui,sans-serif!important;color:#704b78!important;font-size:clamp(17px,4vw,22px);line-height:1.65}
+        .message p{padding:0 12px}
+        .navbar-fixed-bottom{background:linear-gradient(transparent,#fff7 35%,#fff9);padding:8px 0}
+        .navbar-fixed-bottom button{white-space:normal;margin:4px;border:0;border-radius:22px;background:linear-gradient(135deg,#c77db2,#9877c9);font-weight:700;padding:10px 13px;box-shadow:0 4px 12px #744a8425}
+        .alex-cat-parade{gap:10px;margin:22px auto 125px;max-width:650px}
+        .alex-kawaii-cat,.alex-real-cat{width:105px;min-height:112px;border-radius:22px;padding:9px;background:linear-gradient(145deg,#fffafd,#f3eaff);border:2px solid #f1c6e5;box-shadow:0 7px 18px #7d4b7d18}
+        .alex-kawaii-cat span{font-size:43px}
+        .alex-real-cat img{width:72px;height:72px;border:3px solid #f5cce6}
+        .alex-kawaii-cat small,.alex-real-cat small{font-size:10px}
+        @media(max-width:600px){.custom-banner{min-height:145px;margin:20px auto 10px;padding:20px 12px}.navbar-fixed-bottom{max-height:34vh;overflow-y:auto}.navbar-fixed-bottom button{font-size:12px;padding:8px 10px}.alex-cat-parade{margin-bottom:115px}}
       html = html.replace("</head>", `
       <style>
         .alex-cat-parade{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin:34px auto 110px;padding:0 12px;max-width:850px}
