@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7c9e5">
-  <title>Una sorpresa para Alexandra 💗</title>
+  <title>Una sorpresa para Ale 💗</title>
   <style>
     *{box-sizing:border-box}
     body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 20% 15%,#ffe8f5,transparent 35%),linear-gradient(135deg,#f8d7ed,#e8dcff 55%,#fce8ef);font-family:system-ui,sans-serif;color:#633e66;text-align:center}
@@ -20,7 +20,7 @@
 <body>
   <main class="loader" id="loader">
     <div class="cats">🐱 🐾 🐈‍⬛</div>
-    <h1>Preparando una sorpresa para Alexandra</h1>
+    <h1>Preparando una sorpresa para Ale</h1>
     <p>Un momento… los gatitos están acomodando los globos <span class="paw">💗</span></p>
     <p class="error" id="error">No se pudo cargar la tarjeta. Revisa tu conexión e inténtalo de nuevo.</p>
   </main>
@@ -28,7 +28,7 @@
   <script src="https://cdn.jsdelivr.net/npm/less@4.2.0/dist/less.min.js"></script>
   <script>
   (async function(){
-    const zipUrl = "https://raw.githubusercontent.com/blatomoto890-beep/Cumplea-os-Alexandra/main/Birthday-master.zip";
+    const zipUrl = "https://raw.githubusercontent.com/blatomoto890-beep/Cumplea-os-Ale/main/Birthday-master.zip";
     try {
       const response = await fetch(zipUrl);
       if (!response.ok) throw new Error("No se pudo descargar el proyecto original");
@@ -63,8 +63,8 @@
       loadingCss = rewriteCss(loadingCss);
       const cake = await less.render(cakeLess);
 
-      html = html.replace(/<title>[^<]*<\/title>/i, "<title>¡Feliz cumpleaños, Alexandra! 💗</title>");
-      html = html.replace(/Sapthesh V/g, "Alexandra");
+      html = html.replace(/<title>[^<]*<\/title>/i, "<title>¡Feliz cumpleaños, Ale! 💗</title>");
+      html = html.replace(/Sapthesh V/g, "Ale");
       html = html.replace("A mesage for you", "Un mensaje para ti");
       html = html.replace(/<link rel="stylesheet" type="text\/css" href="stylesheet\.css">/i, "<style>" + css + "</style>");
       html = html.replace(/<link rel="stylesheet" type="text\/css" href="loading\.css">/i, "<style>" + loadingCss + "</style>");
@@ -76,14 +76,14 @@
       html = html.replace(/src="([^"]+\.(?:png|jpg|jpeg|ico))"/g, (all, path) => 'src="' + localUrl(path) + '"');
 
       const catExtras = `
-      <div class="alex-cat-parade" aria-label="Gatitos kawaii y gatitos reales para Alexandra">
+      <div class="alex-cat-parade" aria-label="Gatitos kawaii y gatitos reales para Ale">
         <div class="alex-kawaii-cat"><span>😺</span><small>miau, miau ♡</small></div>
         <div class="alex-real-cat"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=420&q=85" alt="Gatito real de pelaje atigrado"><small>michi bonito ♡</small></div>
         <div class="alex-kawaii-cat dark"><span>🐈‍⬛</span><small>¡purrfect day!</small></div>
         <div class="alex-real-cat second"><img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=420&q=85" alt="Otro gatito real sentado"><small>otro michi ♡</small></div>
         <div class="alex-kawaii-cat"><span>🐾</span><small>patitas mágicas</small></div>
       </div>`;
-      html = html.replace("<p>a very happy birthday Alexandra</p>", "<p>¡Feliz cumpleaños, Alexandra! ♡</p>" + catExtras);
+      html = html.replace("<p>a very happy birthday Ale</p>", "<p>¡Feliz cumpleaños, Ale! ♡</p>" + catExtras);
       html = html.replace("</head>", `
       <style>
         .alex-cat-parade{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin:34px auto 110px;padding:0 12px;max-width:850px}
