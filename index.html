@@ -84,7 +84,7 @@
         html = html.replace(re, "$1" + letter + "$2");
       });
       html = html.replace('<img src="banner.png" class="bannar">', '<div class="bannar custom-banner"><span class="banner-kicker">UN DÍA PARA CELEBRAR</span><strong>¡Feliz cumpleaños, Ale!</strong><small>Que hoy esté lleno de magia, risas y cosas bonitas ♡</small></div>');
-      html = html.replace(/¡purrfect day!/g, "¡día perfecto!");
+      html = html.replace(/¡día perfecto!/g, "¡día perfecto!");
       html = html.replace(/miau, miau ♡/g, "miau, miau ♡");
 
       html = html.replace(/<link rel="stylesheet" type="text\/css" href="stylesheet\.css">/i, "<style>" + css + "</style>");
