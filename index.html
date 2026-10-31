@@ -102,7 +102,7 @@
       document.close();
     } catch (error) {
       const el = document.getElementById("error");
-      if (el) el.style.display = "block";
+      if (el) { el.style.display = "block"; el.textContent = "Error: " + (error && error.message ? error.message : String(error)); }
       console.error(error);
     }
   })();
